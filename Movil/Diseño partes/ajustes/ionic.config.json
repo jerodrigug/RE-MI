@@ -1,0 +1,7 @@
+{
+  "name": "ajustes",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

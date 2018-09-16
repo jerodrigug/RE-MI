@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+ 
+    <ion-title text-center>
+        Ajustes
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+    <h3 padding-top text-center>Cambiar contraseña</h3>
+    <ion-item>
+        <ion-input type="password" placeholder="Contraseña actual"></ion-input>
+    </ion-item>
+    <ion-item padding-top>
+        <ion-input type="password" placeholder="Nueva contraseña"></ion-input>
+    </ion-item>
+    <ion-item padding-top>
+        <ion-input type="password" placeholder="Confirmar contraseña"></ion-input>
+    </ion-item>
+
+    <div text-center padding-top>
+        <button ion-button color="secondary" (click)="cambExi()" round>Guardar cambios</button>
+    </div>
+    <div class="alFondo">
+        <button button ion-button color="danger" (click)="closeSes()" icon-end>
+            Cerrar sesión
+            <ion-icon name="log-out"></ion-icon>
+        </button>
+    </div>
+    
+    </ion-list>
+</ion-content>
