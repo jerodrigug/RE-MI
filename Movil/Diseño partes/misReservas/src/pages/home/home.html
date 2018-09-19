@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div text-center>
+        <button ion-button class="butBig" color="morado" icon-end>
+            ChatBot
+            <ion-icon name="chatbubbles"></ion-icon>
+        </button>
+
+        <button ion-button class="butBig" color="azul" espDer icon-end>
+            Reserva Manual
+            <ion-icon name="person"></ion-icon>
+        </button>
+    </div>
+
+    <h2>Mis reservas:</h2>
+    <ion-list>
+        <ion-item ion-item *ngFor="let item of myReservas">
+
+            <ion-label>
+                {{ item.paraDia }} <br/> 
+                Horario: {{ item.hInicial }} - {{ item.hFinal }} <br/>
+                Aula: {{ item.aula }}
+            </ion-label>
+            <button color="danger" ion-button class="butMed" icon-only (click)="metDesrv(item)" item-end round>
+                    <ion-icon name="close"></ion-icon>
+            </button>
+
+        </ion-item>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list padding>
+    <ion-item padding>
+      <ion-label color="azul">¿Necesitas piano?</ion-label>
+      <ion-select [(ngModel)]="pPiano" interface="popover">
+        <ion-option value="siPiano">SI</ion-option>
+        <ion-option value="noPiano">NO</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item padding>
+      <ion-label color="azul">¿Para cúando la necesitas?</ion-label>
+      <ion-select [(ngModel)]="pDia">
+        <ion-option value="hoyM">Hoy en la mañana</ion-option>
+        <ion-option value="hoyT">Hoy en la tarde</ion-option>
+        <ion-option value="maM">Mañana en la mañana</ion-option>
+        <ion-option value="maT">Mañana en la tarde</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item padding>
+      <ion-label color="azul">¿Por cúanto tiempo?</ion-label>
+      <ion-select [(ngModel)]="pTiempo">
+        <ion-option value="OneH">1 Hora</ion-option>
+        <ion-option value="twoH">2 Horas</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <div text-center>
+    <button ion-button color="morado" (click)="buscAulas()" outline icon-end>
+      Presiona para buscar aulas
+      <ion-icon name="search"></ion-icon>
+    </button>  
+  </div>
+  
+  <ion-list>
+    <button ion-item *ngFor="let item of lista;let i = index" (click)="aulaSelected(item)">
+      <li *ngIf="i < 2">{{ item.hInicial }}-{{ item.hFinal }} (Aula {{ item.aula }})</li>
+    </button>  
+  </ion-list>
+</ion-content>
