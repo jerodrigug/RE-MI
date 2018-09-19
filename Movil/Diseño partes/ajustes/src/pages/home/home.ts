@@ -31,7 +31,8 @@ export class HomePage {
           text: 'Aceptar',
           handler: () => {
             //this.navCtrl.push(AQUI LA PAGINA HOME); //cierra sesión y se va a la pagina home (recuerda importar la pagina home)
-            console.log('Has cerrado sesión exitosamente');
+            
+            //console.log('Has cerrado sesión exitosamente');
           }
         },
         {
