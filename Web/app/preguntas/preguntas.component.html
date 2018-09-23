@@ -1,0 +1,21 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <mat-list>
+            <h3 mat-subheader>Realizar busqueda</h3>
+            <mat-divider></mat-divider>
+            <mat-list-item *ngFor="let pregunta of preguntas">
+                <mat-divider></mat-divider>
+
+                <mat-form-field>
+                  <mat-select placeholder= {{pregunta.question}}>
+                      <mat-option *ngFor="let answer of preguntas ;let i=index" [value]="pregunta.question">
+                            {{pregunta.answers[i]}}
+                     </mat-option>
+                      </mat-select>
+                   </mat-form-field>
+                </mat-list-item> 
+          </mat-list>
+     </mat-card-header>
+  </mat-card>
+
+      
