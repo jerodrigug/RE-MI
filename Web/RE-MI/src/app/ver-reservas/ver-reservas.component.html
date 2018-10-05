@@ -1,12 +1,17 @@
 <div>
   <div class="container">
-      <h1 id="Salir" [routerLink] ="['/']">
+      <button id ="Registrar" [routerLink] = "['/registrar']">
+        Registrar 
+      </button>
+      <button id = "Salir" [routerLink] ="['/']">
           Salir
-      </h1>
+      </button>
   </div>
-  <button class="Reservar">
-    Hacer reserva
-  </button>
+  <a [routerLink]= "['hacer']">
+    <button class="Reservar">
+      Hacer reserva
+    </button>
+  </a>
   <div class = "reservasContainer">
     <div class="flexsearch">
       <div class="flexsearch--wrapper">

@@ -1,0 +1,17 @@
+#agendar{
+    margin-top: 20px;
+    color: #007bff;
+}
+
+h2{
+   font-size: 20px;
+   font-family: 'Helvetica', sans-serif;
+}
+
+div{
+   margin-top: 20px;
+}
+
+.input{
+    width: 360px;
+}

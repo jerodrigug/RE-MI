@@ -1,0 +1,42 @@
+<h1 id="agendar">
+  Agendar Nueva Reserva
+</h1>
+
+<div>
+  <h2>
+    Nombre
+  </h2>
+  <input type ="text" id="nombre" class="input">
+</div>
+
+<div>
+  <h2>
+    Codigo
+  </h2>
+  <input type ="text" id="codigo" class="input">
+</div>
+
+<div>
+    <h2>
+      Tipo
+    </h2>
+    <select id ="tipo" class="input">
+      <option *ngFor="let aula of aulas" value="{{aula}}">{{aula}}</option>
+    </select>
+  </div>
+
+<div>
+    <h2>
+      Fecha
+    </h2>
+    <input type="date" id="Fecha" class="input">
+</div>
+
+<div>
+  <h2>
+    Salones
+  </h2>
+  <select size = {{a}} id = "Salones" class="input">
+    <option *ngFor="let salon of salones" value="{{salon}}">{{salon}}</option>
+  </select>
+</div>

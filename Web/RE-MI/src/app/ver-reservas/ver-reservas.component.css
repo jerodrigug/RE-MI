@@ -42,6 +42,21 @@
 #Salir{
     position: relative;
     right: 15px;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#Registrar{
+    position: relative;
+    float: left;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
 }
 
 .Reservar{
@@ -52,6 +67,7 @@
     width: 200px;
     color: #FFF;
     background-color: #9c27b0;
+    cursor: pointer;
 }
 
 .reservasContainer{
