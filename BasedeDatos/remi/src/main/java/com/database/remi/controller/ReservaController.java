@@ -1,5 +1,9 @@
 package com.database.remi.controller;
 
+import java.util.Map;
+
+//import java.util.HashMap;
+
 import javax.validation.Valid;
 
 import com.database.remi.exception.ResourceNotFoundException;
@@ -22,6 +26,10 @@ public class ReservaController{
     @Autowired
      private SalonRepository salonRepository;
 
+     @Autowired
+     SalonController controller;
+     //controller.salonmap;
+
     @GetMapping("/salones/{code}/reservas")
     public Page<Reserva> getAllReservesBySalonCode(@PathVariable (value = "code") String code,
                                          Pageable pageable){
@@ -29,33 +37,37 @@ public class ReservaController{
     }
 
     @PostMapping("/salones/{code}/reservas")
-    public Reserva createReserva(@PathVariable(value = "code") String code,
+    public Reserva createReserva(@PathVariable(value = "code") String codigo,
                                  @Valid @RequestBody Reserva reserva){
-       return salonRepository.findById(code).map(salon -> {
-         salon.setEstado("Ocupado");  
+       return salonRepository.findById(codigo).map(salon -> {
          reserva.setSalon(salon);
+         Map<Integer,Boolean> alterno = controller.salones.get(codigo);
+         alterno.replace(reserva.getHoraInicial(), true);
+         controller.salones.replace(codigo, alterno);
          return reservaRepository.save(reserva);  
-       }).orElseThrow(() -> new ResourceNotFoundException("Salon code" + code + "not found"));  
+       }).orElseThrow(() -> new ResourceNotFoundException("Salon", "codigo" , codigo));  
     }
 
     @DeleteMapping("/salones/{code}/reservas/{reservaId}")
-    public ResponseEntity<?> deleteReserva(@PathVariable (value = "code") String code,
+    public ResponseEntity<?> deleteReserva(@PathVariable (value = "code") String codigo,
                                            @PathVariable(value = "reservaId") Long reservaId){
        
                                            
-      if(!salonRepository.existsById(code)){
-        throw new ResourceNotFoundException("Salon code" + code + "not found");
+      if(!salonRepository.existsById(codigo)){
+        throw new ResourceNotFoundException("Salon", "codigo" , codigo);
       }else{
-           salonRepository.findById(code).map(salon -> {
-              salon.setEstado("Disponible");
+           salonRepository.findById(codigo).map(salon -> {
               return salonRepository.save(salon);
-          }).orElseThrow(() -> new ResourceNotFoundException("Salon code" + code + "not found"));  
+          }).orElseThrow(() -> new ResourceNotFoundException("Salon", "codigo" , codigo));  
       }
       
       return reservaRepository.findById(reservaId).map(reserva -> {
+        Map<Integer,Boolean> alterno = controller.salones.get(codigo);
+         alterno.replace(reserva.getHoraInicial(), false);
+         controller.salones.replace(codigo, alterno);
         reservaRepository.delete(reserva);
         return ResponseEntity.ok().build();           
-      }).orElseThrow(() -> new ResourceNotFoundException("ReservaId" + reservaId + "not found"));
+      }).orElseThrow(() -> new ResourceNotFoundException("Reserva", "id" , reservaId));
 
     }
 

@@ -23,14 +23,6 @@ public class Salon{
     @Size(max = 30)
     private String instrumento;
 
-    @NotNull
-    @Size(max = 100)
-    private String descripcion;
-
-    @NotNull
-    @Size(max = 10)
-    private String estado; 
-
     //Getters
     public String getCodigo(){
         return codigo;
@@ -42,15 +34,7 @@ public class Salon{
         return instrumento;
     }
 
-    public String getDescripcion(){
-        return descripcion;
-    }
-
-    public String getEstado(){
-        return estado;
-    }
-
-    //Setters
+   //Setters
     public void setCodigo(String codigo){
         this.codigo=codigo;
     }
@@ -60,13 +44,4 @@ public class Salon{
     public void setInstrumento(String instrumento){
         this.instrumento = instrumento;
     }
-
-    public void setDescripcion(String descripcion){
-        this.descripcion = descripcion;
-    }
-
-    public void setEstado(String estado){
-        this.estado = estado;
-    }
-
 }
