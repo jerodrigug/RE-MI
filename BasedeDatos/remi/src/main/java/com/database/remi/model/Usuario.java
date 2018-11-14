@@ -49,9 +49,8 @@ public class Usuario{
 
 
     public Usuario(){
-
+        
     }
-
     public Usuario(Long codigo,String nombre, String correo, String especializacion, String contrasena){
         this.codigo=codigo;
         this.nombre=nombre;
@@ -110,4 +109,8 @@ public class Usuario{
     public void setRoles(Set<Rol> roles){
         this.roles=roles;
     }
+
+	public Usuario orElseThrow(Object object) {
+		return null;
+	}
 }

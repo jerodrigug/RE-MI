@@ -10,12 +10,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Max;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Optional;
 
 @Entity
 @Table(name = "reservas")
@@ -31,22 +29,10 @@ public class Reserva implements Serializable{
   private Long id;
 
   @NotNull
-  @Size(max = 100)
-  private String estudiante;
+  private Date fechaInicial;
 
   @NotNull
-  @Size(max = 7)
-  private String dia;
-
-  @NotNull
-  @Min(value = 8)
-  @Max(value = 18)
-  private Integer horaInicial;
-
-  @NotNull
-  @Min(value = 8)
-  @Max(value = 18)
-  private Integer horaFinal;
+  private Date fechaFinal;
 
   @Column(nullable = false, updatable = false)
   @Temporal(TemporalType.TIMESTAMP)
@@ -65,35 +51,23 @@ public class Reserva implements Serializable{
   @JsonIgnore
   private Usuario usuario;
 
-  
-
-  
- 
   //Getters
   public Long getId(){
     return id;
   }
 
-  public String getEstudiante(){
-    return estudiante;
-  }
-
-  public Date getCreatedAt(){
+ public Date getCreatedAt(){
     return createdAt;
   }
 
-  public Integer getHoraInicial(){
-    return horaInicial;
+  public Date getFechaInicial(){
+    return fechaInicial;
   }
 
-  public Integer getHoraFinal(){
-    return horaFinal;
+  public Date getFechaFinal(){
+    return fechaFinal;
   }
   
-  public String getDia(){
-    return dia;
-  }
-
   public Salon getSalon(){
     return salon;
   }
@@ -107,25 +81,19 @@ public class Reserva implements Serializable{
     this.id = id;
   }
 
-  public void setEstudiante(String estudiante){
-    this.estudiante=estudiante;
-  }
-
   public void setCreatedAt(Date createdAt){
     this.createdAt= createdAt;
   }
 
-  public void setHoraInicial(Integer horaInicial){
-    this.horaInicial = horaInicial;
+  public void setFechaInicial(Date fechaInicial){
+    this.fechaInicial = fechaInicial;
   }
 
-  public void setHoraFinal(Integer horaFinal){
-    this.horaFinal = horaFinal;
+  public void setFechaFinal(Date fechaFinal){
+    this.fechaFinal = fechaFinal;
   }
 
-  public void setDia(String dia){
-    this.dia = dia;
-  }
+  
 
   public void setSalon(Salon salon){
     this.salon = salon;

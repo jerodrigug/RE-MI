@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-
 @RestController
 @RequestMapping("app/auth")
 public class AuthController{
@@ -50,11 +49,16 @@ public class AuthController{
     @Autowired
     JwtTokenProvider tokenProvider;
 
+    private Long codigoUsuario;
+
+    public Long getCodigoUsuario(){
+        return codigoUsuario;
+    }
     
 
-    @PostMapping("/singnin")
+    @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
+        System.out.println("Intento hacer la autenticacion" + "***qerwqWAFFSVDDDDS^[[[[][][][L");
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getCorreo(),
@@ -68,30 +72,32 @@ public class AuthController{
         String jwt = tokenProvider.generateToken(authentication);
         System.out.println("Se genera el token");
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
-    }
-
+}
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         if(usuarioRepository.existsById(signUpRequest.getCodigo())) {
             return new ResponseEntity(new ApiResponse(false, "Codigo is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
-
-        if(usuarioRepository.existsByCorreo(signUpRequest.getCorreo())) {
+        
+       if(usuarioRepository.existsByCorreo(signUpRequest.getCorreo())) {
             return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
                     HttpStatus.BAD_REQUEST);
+                  
         }
 
         // Creating user's account
         Usuario usuario = new Usuario(signUpRequest.getCodigo(), signUpRequest.getNombre(),
                 signUpRequest.getCorreo(), signUpRequest.getEspecializacion(), signUpRequest.getContrasena());
         
-        Rol userRol = rolRepository.findByName(RolName.ROL_USER)
+         Rol userRol = rolRepository.findByName(RolName.ROL_USER)
                 .orElseThrow(() -> new AppException("User Role not set."));
         
-        usuario.setRoles(Collections.singleton(userRol));
+         usuario.setRoles(Collections.singleton(userRol));
 
+        
         Usuario result = usuarioRepository.save(usuario);
+        
         
          URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/app/usuarios/{codigo}")

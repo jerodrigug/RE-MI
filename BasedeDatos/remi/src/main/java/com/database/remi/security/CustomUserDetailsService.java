@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService{
     @Transactional
     public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException{
          // Let people login with email
-        Usuario usuario = usuarioRepository.findByCorreo(correo).orElseThrow(() -> 
+        Usuario usuario = usuarioRepository.findByCorreo(correo).orElseThrow(()->
                          new UsernameNotFoundException("Usuario no encontrado con este correo"));     
     
 
@@ -29,8 +29,8 @@ public class CustomUserDetailsService implements UserDetailsService{
     //This method is used by JWTAuthenticationFilter
     @Transactional
     public UserDetails loadUserById(Long codigo){
-        Usuario usuario = usuarioRepository.findByCodigo(codigo).orElseThrow(
-            () -> new UsernameNotFoundException("Usuario no encontrado con el código:" + codigo)
+        Usuario usuario = usuarioRepository.findByCodigo(codigo).orElseThrow(()->
+             new UsernameNotFoundException("Usuario no encontrado con el código:" + codigo)
         );
 
         return UserPrincipal.create(usuario);

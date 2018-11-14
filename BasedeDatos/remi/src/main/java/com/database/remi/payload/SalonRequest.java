@@ -1,13 +1,11 @@
-package com.database.remi.model;
+package com.database.remi.payload;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 
-@Entity
-@Table(name= "salones")
-public class Salon{
+public class SalonRequest{
 
     @Id
     @Size(max = 6)
@@ -21,25 +19,28 @@ public class Salon{
     @Size(max = 30)
     private String instrumento;
 
-    //Getters
     public String getCodigo(){
         return codigo;
     }
+
+    public void setCodigo(String codigo){
+        this.codigo = codigo;
+    }
+
     public String getTipo(){
         return tipo;
     }
+
+    public void setTipo(String tipo){
+        this.tipo = tipo;
+    }
+
     public String getInstrumento(){
         return instrumento;
     }
 
-   //Setters
-    public void setCodigo(String codigo){
-        this.codigo=codigo;
-    }
-    public void setTipo(String tipo){
-        this.tipo=tipo;
-    }
     public void setInstrumento(String instrumento){
-        this.instrumento = instrumento;
+        this.instrumento  = instrumento;
     }
+
 }
